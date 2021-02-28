@@ -6,7 +6,7 @@ class Square(BaseFunction):
         return x**2
 
     def backward(self, gy):
-        x = self.inputs.data
+        x = self.inputs[0].data
         return 2 * x * gy
 
 

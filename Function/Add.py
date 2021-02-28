@@ -6,7 +6,7 @@ class Add(Base):
         return x0 + x1
 
     def backward(self, gy):
-        pass
+        return gy, gy
 
 
 def add(x0, x1):

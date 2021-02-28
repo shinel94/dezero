@@ -22,7 +22,16 @@ class Base:
         funcs = [self.creator]
         while len(funcs) != 0:
             f = funcs.pop()
-            x, y = f.inputs, f.outputs
-            x.grad = f.backward(y.grad)
-            if x.creator is not None:
-                funcs.append(x.creator)
+            # x, y = f.inputs, f.outputs
+            # x.grad = f.backward(y.grad)
+            # if x.creator is not None:
+            #     funcs.append(x.creator)
+            gys = [output.grad for output in f.outputs]
+            gxs = f.backward(*gys)
+            if not isinstance(gxs, tuple):
+                gxs = (gxs, )
+
+            for x, gx in zip(f.inputs , gxs):
+                x.grad = gx
+                if x.creator is not None:
+                    funcs.append(x.creator)
