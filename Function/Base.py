@@ -1,3 +1,4 @@
+import weakref
 from abc import abstractmethod, ABCMeta
 from Variable.Base import Base as BaseVariable
 from utils.trasnform import as_array
@@ -21,8 +22,8 @@ class Base(metaclass=ABCMeta):
         for output in outputs:
             output.set_creator(self)
         self.inputs = a_inputs
-        self.outputs = outputs
-        return self.outputs if len(self.outputs) > 1 else self.outputs[0]
+        self.outputs = [weakref.ref(output) for output in outputs]
+        return outputs if len(outputs) > 1 else outputs[0]
 
     @abstractmethod
     def forward(self, *x):

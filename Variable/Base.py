@@ -15,7 +15,7 @@ class Base:
         self.creator = func
         self.generation = func.generation + 1
 
-    def backward(self):
+    def backward(self, retain_grad=False):
         # if self.creator is not None:
         #     self.creator.input.grad = self.creator.backward(self.grad)
         #     self.creator.input.backward()
@@ -38,7 +38,7 @@ class Base:
             # x.grad = f.backward(y.grad)
             # if x.creator is not None:
             #     funcs.append(x.creator)
-            gys = [output.grad for output in f.outputs]
+            gys = [output().grad for output in f.outputs]
             gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs, )
