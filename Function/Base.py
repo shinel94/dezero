@@ -17,6 +17,7 @@ class Base(metaclass=ABCMeta):
         if not isinstance(ys, tuple):
             ys = (ys, )
         outputs = [BaseVariable(as_array(y)) for y in ys]
+        self.generation = max([x.generation for x in a_inputs])
         for output in outputs:
             output.set_creator(self)
         self.inputs = a_inputs
