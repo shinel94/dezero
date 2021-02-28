@@ -1,4 +1,4 @@
-from Function import Base
+from Function.Base import Base, BaseVariable
 
 
 class Add(Base):
@@ -11,3 +11,5 @@ class Add(Base):
 
 def add(x0, x1):
     return Add()(x0, x1)
+
+BaseVariable.__add__ = add

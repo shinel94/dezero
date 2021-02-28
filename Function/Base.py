@@ -4,6 +4,7 @@ from Variable.Base import Base as BaseVariable
 from utils.trasnform import as_array
 from Config.Base import Base as Config
 
+
 class Base(metaclass=ABCMeta):
     # def __call__(self, a_input: BaseVariable, *args, **kwargs):
     def __call__(self, *a_inputs, **kwargs):
