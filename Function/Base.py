@@ -19,9 +19,9 @@ class Base(metaclass=ABCMeta):
         outputs = [BaseVariable(as_array(y)) for y in ys]
         for output in outputs:
             output.set_creator(self)
-        self.inputs = a_inputs
-        self.outputs = outputs
-        return self.outputs if len(self.outputs) > 1 else self.outputs[0]
+        self.inputs = a_inputs if len(a_inputs) > 1 else a_inputs[0]
+        self.outputs = outputs if len(outputs) > 1 else outputs[0]
+        return self.outputs
 
     @abstractmethod
     def forward(self, *x):

@@ -22,7 +22,7 @@ class Base:
         funcs = [self.creator]
         while len(funcs) != 0:
             f = funcs.pop()
-            x, y = f.input, f.output
+            x, y = f.inputs, f.outputs
             x.grad = f.backward(y.grad)
             if x.creator is not None:
                 funcs.append(x.creator)
