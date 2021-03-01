@@ -1,7 +1,7 @@
 import weakref
 from abc import abstractmethod, ABCMeta
 from Variable.Base import Base as BaseVariable
-from utils.trasnform import as_array
+from utils.trasnform import as_array, as_variable
 from Config.Base import Base as Config
 
 
@@ -14,6 +14,7 @@ class Base(metaclass=ABCMeta):
         # self.output = BaseVariable(as_array(y))
         # self.output.set_creator(self)
         # self.input = a_input
+        a_inputs = [as_variable(x) for x in a_inputs]
         xs = [x.data for x in a_inputs]
         ys = self.forward(*xs)
         if not isinstance(ys, tuple):

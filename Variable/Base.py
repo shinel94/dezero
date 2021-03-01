@@ -2,6 +2,7 @@ import numpy as np
 
 
 class Base:
+    __array_priority__ = 200
     def __init__(self, data: np.ndarray, name=None):
         if data is not None:
             if not isinstance(data, np.ndarray):
