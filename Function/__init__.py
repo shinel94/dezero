@@ -6,3 +6,4 @@ from .Neg import Neg, neg
 from .Sub import Sub, sub
 from .Div import Div, div
 from .Pow import Pow, pow
+from .functions import matyas, sphere, goldstein
